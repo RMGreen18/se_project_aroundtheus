@@ -37,8 +37,7 @@ opacity: 100%;
 transition: opacity .2s linear;
 border: 1px;
 grid-area: button;
-
-margin-left: auto;
+margin: 0 0;
 }
 
 .profile__edit-button:hover {
@@ -59,7 +58,7 @@ margin: 0;
   opacity: 100%;
   transition: opacity .2s linear;
   border: 2px;
-  margin-left: auto;
+  margin: 0 0;
 }
 
 .profile__add-button:hover {
