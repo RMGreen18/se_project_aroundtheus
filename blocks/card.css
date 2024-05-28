@@ -15,16 +15,23 @@ max-width: 282px;
 
 .card__caption {
 background: #fff;
-color: #000;
 display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 0 20px;
 border-radius: 0 0 10px 10px;
 height: 79px;
+}
+
+.card__title {
+margin: 0;
 text-overflow: ellipsis;
-white-space: nowrwap;
+text-wrap: nowrap;
 overflow: hidden;
+color: #000;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
 }
 
 .card__like-button {
@@ -39,3 +46,4 @@ width: 21px;
 .card__like-button:hover {
   opacity: 60%
 }
+
