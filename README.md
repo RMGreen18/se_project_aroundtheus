@@ -20,7 +20,7 @@ The webpage allows users to:
 ![Webpage user actions](./images/readme-images/description__webpage-actions.png)
 \
 \
-This project featueres an adaptable webpage optimized for screen widths ranging from **desktop**(1200px) to **mobile**(320px). 
+This project featueres an adaptable webpage optimized for screen widths ranging from **desktop**(1280px) to **mobile**(320px). 
 
 ## Project Features   
 ### Responsive Layout
