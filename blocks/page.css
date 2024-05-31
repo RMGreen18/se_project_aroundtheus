@@ -1,11 +1,11 @@
 .page {
-background-color: #000;
-color:#fff;
-font-family: "Inter", Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  font-family: "Inter", Arial, sans-serif;
 }
 
 .page__content {
-max-width: 880px;
-margin: 0 auto;
-min-height: 100vh;
+  max-width: 880px;
+  margin: 0 auto;
+  min-height: 100vh;
 }

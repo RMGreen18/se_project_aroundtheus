@@ -1,8 +1,6 @@
 .card {
-display: flex;
-flex-direction: column;
-max-height: 361px;
-max-width: 282px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__image {
@@ -14,35 +12,34 @@ max-width: 282px;
 }
 
 .card__caption {
-background: #fff;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 20px;
-border-radius: 0 0 10px 10px;
-height: 79px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 20px;
+  border-radius: 0 0 10px 10px;
 }
 
 .card__title {
-margin: 0;
-text-overflow: ellipsis;
-text-wrap: nowrap;
-overflow: hidden;
-color: #000;
-font-weight: 900;
-font-size: 24px;
-line-height: 29px;
+  margin: 0;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
+  color: #000;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
 }
 
 .card__like-button {
-background: url(../images/like-button.svg) center no-repeat;
-border: none;
-opacity: 100%;
-transition: opacity .2s linear;
-padding: 9px 11px;
+  background: url(../images/like-button.svg) center no-repeat;
+  border: none;
+  opacity: 100%;
+  transition: opacity 0.2s linear;
+  padding: 9px 11px;
+  cursor: pointer;
 }
 
 .card__like-button:hover {
-  opacity: 60%
+  opacity: 50%;
 }
-
