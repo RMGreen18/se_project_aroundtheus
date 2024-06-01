@@ -5,6 +5,7 @@
 * [Description](#description)
 * [Project Features](#project-features)
 * [GitHub](#github-pages-link)
+* [Video](#video-link)
   
 ## Description
   
@@ -80,3 +81,7 @@ This project featueres an adaptable webpage optimized for screen widths ranging 
 ### To view the finished webpage:
 https://rmgreen18.github.io/se_project_aroundtheus/ 
 
+## Video Link
+
+### Video walk-through of finished webpage and code:
+https://drive.google.com/file/d/1UyQ2YgsWQwiW5lMPCtzoSyWBAs4IHPkl/view?usp=drive_link
