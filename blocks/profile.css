@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 40px;
+  padding: 40px 0 51px;
 }
 
 .profile__image {
@@ -80,7 +80,7 @@
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto;
-    padding-top: 42px;
+    padding: 42px 0 36px;
     max-width: 282px;
   }
   .profile__image {
@@ -97,6 +97,7 @@
   .profile__title {
     font-size: 22px;
     max-width: 90%;
+    line-height: 1.2;
   }
   .profile__description {
     font-size: 14px;
@@ -108,6 +109,6 @@
   .profile__add-button {
     background: url(../images/add-button_mobile.svg) no-repeat;
     width: 100%;
-    margin: 0 0 36px;
+    margin: 0;
   }
 }
