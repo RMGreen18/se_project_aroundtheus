@@ -75,7 +75,7 @@
   opacity: 60%;
 }
 
-@media screen and (max-width: 597px) {
+@media screen and (max-width: 730px) {
   .profile {
     flex-direction: column;
     justify-content: space-around;
