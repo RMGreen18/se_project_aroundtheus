@@ -25,6 +25,9 @@ const initialCards = [
   },
 ];
 
+/*-------------------------------------------------------------------------------*/
+/*                                 Elements                                      */
+/*-------------------------------------------------------------------------------*/
 const profileEditButton = document.querySelector('#profile-edit-button');
 const profileEditModal = document.querySelector('#profile-edit-modal');
 const profileCloseButton = document.querySelector('#profile-modal-close');
@@ -34,20 +37,37 @@ const modalTitleInput = document.querySelector("#profile-title-input");
 const modalDescriptionInput = document.querySelector("#profile-description-input");
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
 
-profileEditButton.addEventListener('click',() => {
-  modalTitleInput.value = profileTitle.textContent;
-  modalDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add('modal_opened');
-});
 
+/*-------------------------------------------------------------------------------*/
+/*                                 Functions                                     */
+/*-------------------------------------------------------------------------------*/
 
-profileCloseButton.addEventListener('click', () => {
+function openProfileModal() {
+    modalTitleInput.value = profileTitle.textContent;
+    modalDescriptionInput.value = profileDescription.textContent;
+    profileEditModal.classList.add('modal_opened');
+}
+
+function closeProfileModal() {
   profileEditModal.classList.remove('modal_opened');
-});
+}
 
-profileEditForm.addEventListener("submit", (e) => {
+/*-------------------------------------------------------------------------------*/
+/*                                Event Handlers                                 */
+/*-------------------------------------------------------------------------------*/
+
+function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = modalTitleInput.value;
   profileDescription.textContent = modalDescriptionInput.value;
   profileEditModal.classList.remove('modal_opened');
-});
+}
+
+/*-------------------------------------------------------------------------------*/
+/*                                Event Listeners                                */
+/*-------------------------------------------------------------------------------*/
+profileEditButton.addEventListener('click', openProfileModal);
+
+profileCloseButton.addEventListener('click', closeProfileModal);
+
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
