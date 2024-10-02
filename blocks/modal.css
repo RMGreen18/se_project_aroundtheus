@@ -83,6 +83,10 @@
   max-width: 358px;
   align-self: center;
   margin-top: 18px;
+  transition: opacity 0.1s linear;
+}
+.modal__submit:hover {
+  opacity: 80%;
 }
 
 @media screen and (max-width: 600px) {
