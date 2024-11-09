@@ -35,7 +35,7 @@
             <button aria-label="edit" type="button" class="profile__edit-button" id="profile-edit-button"></button>
             <p class="profile__description" id="profile-description">Explorer</p>
           </div>
-          <button aria-label="add image" type="button" class="profile__add-button"></button>
+          <button aria-label="add image" type="button" class="profile__add-button" id="profile-add-button"></button>
         </section>
         <section class="cards">
           <ul class="cards__list" id="card-list">
@@ -53,6 +53,17 @@
           <h3 class="modal__heading">Edit Profile</h3>
           <input type="text" name="title" placeholder="Name" class="modal__input" id="profile-title-input"/>
           <input type="text" name="description" placeholder="Description" class="modal__input" id="profile-description-input"/>
+          <button class="modal__submit" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="profile-add-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button" id="profile-modal-close"></button>
+        <form class="modal__form" id="profile-add-form">
+          <h3 class="modal__heading">New Place</h3>
+          <input type="text" name="title" placeholder="Title" class="modal__input" id="card-title-input"/>
+          <input type="text" name="link" placeholder="Image link" class="modal__input" id="card-image-input"/>
           <button class="modal__submit" type="submit">Save</button>
         </form>
       </div>
