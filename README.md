@@ -9,7 +9,7 @@
   
 ## Description
   
-This project was created using **HTML** and **CSS** in accordance with the Figma design and brief provided by TripleTen. \
+This project was created using **HTML** and **CSS** in accordance with the [Figma design](https://www.figma.com/design/JFPhASqvZ5pBjQV2ouUlim/Sprint-5_-Around-The-U.S.-_-desktop-%2B-mobile-(Copy)?node-id=1-2&node-type=frame&t=BKnnPhQKe9XbrKrr-0) and brief provided by TripleTen. \
 \
 The webpage allows users to:
 
