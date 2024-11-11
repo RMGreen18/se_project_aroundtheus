@@ -67,7 +67,7 @@
 }
 
 .modal__input::placeholder {
-  color: rgba(0, 0, 0, 1);
+  color:#C4C4C4;
   font-size: 14px;
   line-height: 1.2;
 }
