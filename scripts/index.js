@@ -46,6 +46,7 @@ const modalDescriptionInput = document.querySelector("#profile-description-input
 const cardList = document.querySelector("#card-list");
 const cardTemplate = document.querySelector("#card-template").content.firstElementChild;
 
+
 //Card Add Form
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddCloseButton = document.querySelector("#card-add-close");
@@ -83,6 +84,7 @@ function getCardElement(data) {
   cardElementImage.alt = data.name;
   return cardElement;
 }
+
 
 /*-------------------------------------------------------------------------------*/
 /*                                Event Handlers                                 */
@@ -127,3 +129,17 @@ initialCards.forEach((data) => {
   const cardElement = getCardElement(data);
   cardList.append(cardElement);
 });
+
+const cardLikeButtons = document.querySelectorAll("#card-like-button");
+
+cardLikeButtons.forEach((likebutton) => {
+  likebutton.addEventListener("click", () => {
+    likebutton.classList.toggle("card__like-button_active");
+  });
+});
+
+//Notes for next coding session
+//(2)code like button to change when user clicks
+//(3)add 'delete' icon and code it to delete the card
+//(4)code picture modal to open when user clicks on picture
+//(5)smooth modal opening and closing
