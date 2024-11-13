@@ -81,6 +81,7 @@ function getCardElement(data) {
   const cardElementImage = cardElement.querySelector("#card-image");
   const cardLikeButton = cardElement.querySelector("#card-like-button");
   const cardTrashButton = cardElement.querySelector("#card-trash-button");
+  const expandedImageModal = document.querySelector("#expanded-image-modal");
   cardElementTitle.textContent = data.name;
   cardElementImage.src = data.link;
   cardElementImage.alt = data.name;
@@ -90,6 +91,18 @@ function getCardElement(data) {
   cardTrashButton.addEventListener("click", () => {
     const currentCard = cardTrashButton.closest("#card-element");
     currentCard.remove();
+  });
+  cardElementImage.addEventListener("click", () => {
+    expandedImageModal.classList.add("modal_opened");
+  const imageCloseButton = document.querySelector("#expanded-image-close");
+  const modalImage = expandedImageModal.querySelector("#modal-image");
+  const modalImageCaption = expandedImageModal.querySelector("#modal-image-caption");
+  modalImage.src = data.link;
+  modalImage.alt = data.name;
+  modalImageCaption.textContent = data.name;
+  imageCloseButton.addEventListener("click", () => {
+    expandedImageModal.classList.remove("modal_opened");
+  });
   });
   return cardElement;
 }
@@ -139,7 +152,6 @@ initialCards.forEach((data) => {
 });
 
 //Notes for next coding session
-//(2)code like button to change when user clicks
-//(3)add 'delete' icon and code it to delete the card
+//LEFT OFF HERE vvv
 //(4)code picture modal to open when user clicks on picture
 //(5)smooth modal opening and closing

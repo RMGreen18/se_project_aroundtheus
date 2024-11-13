@@ -27,6 +27,17 @@
   box-sizing: border-box;
 }
 
+.modal__container-image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__image {
+  max-height: 75vh;
+  max-width: 75vw;
+}
+
 .modal__close {
   background-image: url(../images/close-button.svg);
   background-repeat: no-repeat;
