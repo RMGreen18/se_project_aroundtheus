@@ -1,6 +1,14 @@
 .card {
   display: flex;
   flex-direction: column;
+
+}
+
+.card__content {
+  position: relative;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 282px;
 }
 
 .card__image {
@@ -16,7 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 20px;
+  padding: 25px 20px;
   border-radius: 0 0 10px 10px;
 }
 
@@ -48,3 +56,18 @@
   opacity: 50%;
 }
 
+.card__trash-button {
+  background: url(../images/trash-button.svg) center no-repeat;
+  border: none;
+  opacity: 100%;
+  transition: opacity 0.2s linear;
+  padding: 9px 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.card__trash-button:hover {
+  opacity: 60%;
+}
