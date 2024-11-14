@@ -150,6 +150,3 @@ initialCards.forEach((data) => {
   const cardElement = getCardElement(data);
   cardList.append(cardElement);
 });
-
-//Notes for next coding session
-//(5)smooth modal opening and closing
