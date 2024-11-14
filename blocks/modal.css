@@ -33,7 +33,7 @@
   flex-direction: column;
 }
 
-.modal__image {
+.modal__preview-image {
   max-height: 75vh;
   max-width: 75vw;
 }

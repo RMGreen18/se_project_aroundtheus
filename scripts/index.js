@@ -81,7 +81,7 @@ function getCardElement(data) {
   const cardElementImage = cardElement.querySelector("#card-image");
   const cardLikeButton = cardElement.querySelector("#card-like-button");
   const cardTrashButton = cardElement.querySelector("#card-trash-button");
-  const expandedImageModal = document.querySelector("#expanded-image-modal");
+  const previewImageModal = document.querySelector("#preview-image-modal");
   cardElementTitle.textContent = data.name;
   cardElementImage.src = data.link;
   cardElementImage.alt = data.name;
@@ -93,15 +93,15 @@ function getCardElement(data) {
     currentCard.remove();
   });
   cardElementImage.addEventListener("click", () => {
-    expandedImageModal.classList.add("modal_opened");
-  const imageCloseButton = document.querySelector("#expanded-image-close");
-  const modalImage = expandedImageModal.querySelector("#modal-image");
-  const modalImageCaption = expandedImageModal.querySelector("#modal-image-caption");
-  modalImage.src = data.link;
-  modalImage.alt = data.name;
-  modalImageCaption.textContent = data.name;
+    previewImageModal.classList.add("modal_opened");
+  const imageCloseButton = document.querySelector("#preview-image-close");
+  const modalPreview = previewImageModal.querySelector("#modal-preview");
+  const modalPreviewCaption = previewImageModal.querySelector("#modal-preview-caption");
+  modalPreview.src = data.link;
+  modalPreview.alt = data.name;
+  modalPreviewCaption.textContent = data.name;
   imageCloseButton.addEventListener("click", () => {
-    expandedImageModal.classList.remove("modal_opened");
+    previewImageModal.classList.remove("modal_opened");
   });
   });
   return cardElement;
@@ -152,6 +152,4 @@ initialCards.forEach((data) => {
 });
 
 //Notes for next coding session
-//LEFT OFF HERE vvv
-//(4)code picture modal to open when user clicks on picture
 //(5)smooth modal opening and closing
