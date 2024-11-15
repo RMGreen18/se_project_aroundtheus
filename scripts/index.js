@@ -91,7 +91,7 @@ function getCardElement(data) {
     currentCard.remove();
   });
   cardElementImage.addEventListener("click", () => {
-    previewImageModal.classList.add("modal_opened");
+    openPopup(previewImageModal);
     modalPreview.src = data.link;
     modalPreview.alt = data.name;
     modalPreviewCaption.textContent = data.name;
