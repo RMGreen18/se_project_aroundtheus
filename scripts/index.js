@@ -31,7 +31,8 @@ const initialCards = [
 //Modal
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const cardAddModal = document.querySelector("#card-add-modal");
-const closeButton  = document.querySelectorAll(".modal__close");
+const previewImageModal = document.querySelector("#preview-image-modal");
+const closeButton = document.querySelectorAll(".modal__close");
 
 // Profile
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -40,18 +41,27 @@ const profileDescription = document.querySelector("#profile-description");
 const cardAddButton = document.querySelector("#card-add-button");
 
 //Profile Edit Form
-const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
+const profileEditForm = document.forms["profile-edit-form"];
 const modalTitleInput = document.querySelector("#profile-title-input");
-const modalDescriptionInput = document.querySelector("#profile-description-input");
+const modalDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
 
 //Cards
 const cardList = document.querySelector("#card-list");
-const cardTemplate = document.querySelector("#card-template").content.firstElementChild;
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
 
 //Card Add Form
-const cardAddForm = cardAddModal.querySelector("#card-add-form");
+const cardAddForm = document.forms["card-add-form"];
 const cardTitleInput = cardAddForm.querySelector("#card-title-input");
 const cardLinkInput = cardAddForm.querySelector("#card-image-input");
+
+//Image Preview
+const modalPreview = previewImageModal.querySelector("#modal-preview");
+const modalPreviewCaption = previewImageModal.querySelector(
+  "#modal-preview-caption"
+);
 
 /*-------------------------------------------------------------------------------*/
 /*                                 Functions                                     */
@@ -70,7 +80,6 @@ function getCardElement(data) {
   const cardElementImage = cardElement.querySelector("#card-image");
   const cardLikeButton = cardElement.querySelector("#card-like-button");
   const cardTrashButton = cardElement.querySelector("#card-trash-button");
-  const previewImageModal = document.querySelector("#preview-image-modal");
   cardElementTitle.textContent = data.name;
   cardElementImage.src = data.link;
   cardElementImage.alt = data.name;
@@ -83,15 +92,12 @@ function getCardElement(data) {
   });
   cardElementImage.addEventListener("click", () => {
     previewImageModal.classList.add("modal_opened");
-  const modalPreview = previewImageModal.querySelector("#modal-preview");
-  const modalPreviewCaption = previewImageModal.querySelector("#modal-preview-caption");
-  modalPreview.src = data.link;
-  modalPreview.alt = data.name;
-  modalPreviewCaption.textContent = data.name;
+    modalPreview.src = data.link;
+    modalPreview.alt = data.name;
+    modalPreviewCaption.textContent = data.name;
   });
   return cardElement;
 }
-
 
 /*-------------------------------------------------------------------------------*/
 /*                                Event Handlers                                 */
@@ -113,20 +119,21 @@ function handleCardFormSubmit(evt) {
     link,
   });
   cardList.prepend(cardElement);
+  evt.target.reset();
   closePopup(cardAddModal);
 }
 
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
 /*-------------------------------------------------------------------------------*/
-profileEditButton.addEventListener("click", function() {
+profileEditButton.addEventListener("click", function () {
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
-  openPopup(profileEditModal)
+  openPopup(profileEditModal);
 });
 
-cardAddButton.addEventListener("click", function() {
-  openPopup(cardAddModal)
+cardAddButton.addEventListener("click", function () {
+  openPopup(cardAddModal);
 });
 
 closeButton.forEach((button) => {
