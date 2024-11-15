@@ -32,7 +32,7 @@ const initialCards = [
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const cardAddModal = document.querySelector("#card-add-modal");
 const previewImageModal = document.querySelector("#preview-image-modal");
-const closeButton = document.querySelectorAll(".modal__close");
+const closeButtons = document.querySelectorAll(".modal__close");
 
 // Profile
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -136,7 +136,7 @@ cardAddButton.addEventListener("click", function () {
   openPopup(cardAddModal);
 });
 
-closeButton.forEach((button) => {
+closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closePopup(popup));
 });
