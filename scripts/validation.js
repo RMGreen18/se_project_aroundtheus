@@ -1,5 +1,3 @@
-console.log("Hello World!");
-
 function showInputError(formElement, inputElement,  {inputErrorClass, errorClass}) {
 const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
 inputElement.classList.add(inputErrorClass);
@@ -64,17 +62,6 @@ function enableValidation(options) {
     });
 
     setEventListeners(formElement, options);
-
-    //look for all inputs inside of form
-    //loop through all inputs to see if all are valid
-    // if input is not valid
-    //get the validation message
-    //add error class to input
-    //display error message
-    //disable button
-    //if all inputs are valid
-    //enable button
-    //reset error messages
   });
 }
 
