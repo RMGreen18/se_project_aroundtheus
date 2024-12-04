@@ -1,87 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Around the US</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A documentation of sights around the U.S."
+    />
+    <meta name="author" content="Rebekah Green" />
+    <meta name="keywords" content="United states, travel" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+  </head>
 
-<head>
-  <title>Around the US</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A documentation of sights around the U.S." />
-  <meta name="author" content="Rebekah Green" />
-  <meta name="keywords" content="United states, travel" />
-  <link rel="stylesheet" href="./pages/index.css" />
-  <link rel="shortcut icon" href="favicon.ico" />
-</head>
+  <body class="page">
+    <div class="page__content">
+      <header class="header">
+        <img
+          src="./images/logo_white.svg"
+          alt="Around the U.S. logo"
+          class="header__logo"
+        />
+      </header>
 
-<body class="page">
-  <div class="page__content">
-    <header class="header">
-      <img src="./images/logo_white.svg" alt="Around the U.S. logo" class="header__logo" />
-    </header>
-
-    <main class="content">
-      <section class="profile">
-        <img src="./images/avatar_jacques-cousteau.jpg" alt="Jacques Cousteau profile image" class="profile__image" />
-        <div class="profile__info">
-          <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
-          <button aria-label="edit" type="button" class="profile__edit-button" id="profile-edit-button"></button>
-          <p class="profile__description" id="profile-description">Explorer</p>
-        </div>
-        <button aria-label="add image" type="button" class="profile__add-button" id="card-add-button"></button>
-      </section>
-      <section class="cards">
-        <ul class="cards__list" id="card-list">
-        </ul>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2022 Around the U.S.</p>
-    </footer>
-  </div>
-  <div class="modal" id="profile-edit-modal">
-    <div class="modal__container">
-      <button class="modal__close" type="button" id="profile-modal-close"></button>
-      <form class="modal__form" id="profile-edit-form">
+      <main class="content">
+        <section class="profile">
+          <img
+            src="./images/avatar_jacques-cousteau.jpg"
+            alt="Jacques Cousteau profile image"
+            class="profile__image"
+          />
+          <div class="profile__info">
+            <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
+            <button
+              aria-label="edit"
+              type="button"
+              class="profile__edit-button"
+              id="profile-edit-button"
+            ></button>
+            <p class="profile__description" id="profile-description">Explorer</p>
+          </div>
+          <button
+            aria-label="add image"
+            type="button"
+            class="profile__add-button"
+            id="card-add-button"
+          ></button>
+        </section>
+        <section class="cards">
+          <ul class="cards__list" id="card-list"></ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2022 Around the U.S.</p>
+      </footer>
+    </div>
+    <div class="modal" id="profile-edit-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          type="button"
+          id="profile-modal-close"
+        ></button>
         <h3 class="modal__heading">Edit Profile</h3>
-        <input type="text" name="title" placeholder="Name" class="modal__input" id="profile-title-input" />
-        <input type="text" name="description" placeholder="Description" class="modal__input"
-          id="profile-description-input" />
-        <button class="modal__submit" type="submit">Save</button>
-      </form>
-    </div>
-  </div>
-  <div class="modal" id="card-add-modal">
-    <div class="modal__container">
-      <button class="modal__close" type="button" id="card-add-close"></button>
-      <form class="modal__form" id="card-add-form">
-        <h3 class="modal__heading">New Place</h3>
-        <input type="text" name="title" placeholder="Title" class="modal__input" id="card-title-input" />
-        <input type="text" name="link" placeholder="Image link" class="modal__input" id="card-image-input" />
-        <button class="modal__submit" type="submit">Create</button>
-      </form>
-    </div>
-  </div>
-  <div class="modal" id="preview-image-modal">
-    <div class="modal__container-image">
-      <button class="modal__close" type="button" id="preview-image-close"></button>
-      <img class="modal__preview-image" id="modal-preview" src="" alt="">
-      <p class="modal__preview-caption" id="modal-preview-caption"></p>
-    </div>
-  </div>
-
-  <template id="card-template">
-    <li class="card" id="card-element">
-      <div class="card__content">
-        <img class="card__image" id="card-image" src="" alt="">
-        <div class="card__caption">
-          <h2 class="card__title" id="card-title"></h2>
-          <button aria-label="like" type="button" class="card__like-button" id="card-like-button"></button>
-        </div>
-        <button aria-label="trash" type="button" class="card__trash-button" id="card-trash-button"></button>
+        <form class="modal__form" id="profile-edit-form" novalidate>
+            <input
+              class="modal__input"
+              id="profile-title-input"
+              type="text"
+              name="title"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__error" id="profile-title-input-error"></span>
+            <input
+              class="modal__input"
+              id="profile-description-input"
+              type="text"
+              name="description"
+              placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="modal__error" id="profile-description-input-error"></span>
+          <button class="modal__submit modal__submit_disabled" type="submit">Save</button>
+        </form>
       </div>
-    </li>
-  </template>
+    </div>
+    <div class="modal" id="card-add-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button" id="card-add-close"></button>
+        <h3 class="modal__heading">New Place</h3>
+        <form class="modal__form" id="card-add-form" novalidate>
+            <input
+              class="modal__input"
+              id="card-title-input"
+              name="card-title"
+              placeholder="Title"
+              type="text"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span class="modal__error" id="card-title-input-error"></span>
+          <input
+            class="modal__input"
+            id="card-image-input"
+            name="link"
+            placeholder="Image link"
+            type="url"
+            required
+          />
+          <span class="modal__error" id="card-image-input-error"></span>
+          <button class="modal__submit modal__submit_disabled" type="submit" disabled>Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__container-image">
+        <button
+          class="modal__close"
+          type="button"
+          id="preview-image-close"
+        ></button>
+        <img class="modal__preview-image" id="modal-preview" src="" alt="" />
+        <p class="modal__preview-caption" id="modal-preview-caption"></p>
+      </div>
+    </div>
 
-  <script src="./scripts/index.js"></script>
-</body>
+    <template id="card-template">
+      <li class="card" id="card-element">
+        <div class="card__content">
+          <img class="card__image" id="card-image" src="" alt="" />
+          <div class="card__caption">
+            <h2 class="card__title" id="card-title"></h2>
+            <button
+              aria-label="like"
+              type="button"
+              class="card__like-button"
+              id="card-like-button"
+            ></button>
+          </div>
+          <button
+            aria-label="trash"
+            type="button"
+            class="card__trash-button"
+            id="card-trash-button"
+          ></button>
+        </div>
+      </li>
+    </template>
 
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
+  </body>
 </html>

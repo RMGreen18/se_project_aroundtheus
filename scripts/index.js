@@ -138,7 +138,9 @@ cardAddButton.addEventListener("click", function () {
 
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
-  button.addEventListener("click", () => closePopup(popup));
+  button.addEventListener("click", function () {
+    closePopup(popup);
+  });
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
@@ -148,3 +150,4 @@ initialCards.forEach((data) => {
   const cardElement = getCardElement(data);
   cardList.append(cardElement);
 });
+
