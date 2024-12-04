@@ -73,6 +73,7 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closePopupEsc);
   popup.removeEventListener("mousedown", closeOverlay);
 }
+
 function openPopup(popup) {
   popup.classList.add("modal_opened");
   document.addEventListener("keydown", closePopupEsc);
@@ -141,7 +142,6 @@ function handleCardFormSubmit(evt) {
   closePopup(cardAddModal);
 }
 
-
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
 /*-------------------------------------------------------------------------------*/
@@ -169,4 +169,3 @@ initialCards.forEach((data) => {
   const cardElement = getCardElement(data);
   cardList.append(cardElement);
 });
-

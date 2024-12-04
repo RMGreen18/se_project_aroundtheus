@@ -1,19 +1,31 @@
-function showInputError(formElement, inputElement,  {inputErrorClass, errorClass}) {
-const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
-inputElement.classList.add(inputErrorClass);
-errorMessageElement.textContent = inputElement.validationMessage;
-errorMessageElement.classList.add(errorClass);
+function showInputError(
+  formElement,
+  inputElement,
+  { inputErrorClass, errorClass }
+) {
+  const errorMessageElement = formElement.querySelector(
+    `#${inputElement.id}-error`
+  );
+  inputElement.classList.add(inputErrorClass);
+  errorMessageElement.textContent = inputElement.validationMessage;
+  errorMessageElement.classList.add(errorClass);
 }
 
-function hideInputError(formElement, inputElement, {inputErrorClass, errorClass}) {
-  const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
+function hideInputError(
+  formElement,
+  inputElement,
+  { inputErrorClass, errorClass }
+) {
+  const errorMessageElement = formElement.querySelector(
+    `#${inputElement.id}-error`
+  );
   inputElement.classList.remove(inputErrorClass);
   errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(errorClass);
 }
 
 function checkInputValidity(formElement, inputElement, options) {
-  if(!inputElement.validity.valid) {
+  if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, options);
   } else {
     hideInputError(formElement, inputElement, options);
@@ -21,12 +33,11 @@ function checkInputValidity(formElement, inputElement, options) {
 }
 
 function toggleButtonState(inputElements, submitButton, options) {
-  const {inactiveButtonClass} = options;
+  const { inactiveButtonClass } = options;
   let foundInvalid = false;
 
-  inputElements.forEach(inputElement => {
-    if(!inputElement.validity.valid)
-      foundInvalid = true;
+  inputElements.forEach((inputElement) => {
+    if (!inputElement.validity.valid) foundInvalid = true;
   });
 
   if (foundInvalid) {
