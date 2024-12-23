@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -50,8 +53,6 @@ const modalDescriptionInput = document.querySelector(
 
 //Cards
 const cardList = document.querySelector("#card-list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 
 //Card Add Form
 const cardAddForm = document.forms["card-add-form"];
@@ -93,29 +94,9 @@ function closeOverlay(evt) {
   }
 }
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardElementTitle = cardElement.querySelector("#card-title");
-  const cardElementImage = cardElement.querySelector("#card-image");
-  const cardLikeButton = cardElement.querySelector("#card-like-button");
-  const cardTrashButton = cardElement.querySelector("#card-trash-button");
-  cardElementTitle.textContent = data.name;
-  cardElementImage.src = data.link;
-  cardElementImage.alt = data.name;
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button_active");
-  });
-  cardTrashButton.addEventListener("click", () => {
-    const currentCard = cardTrashButton.closest("#card-element");
-    currentCard.remove();
-  });
-  cardElementImage.addEventListener("click", () => {
-    openPopup(previewImageModal);
-    modalPreview.src = data.link;
-    modalPreview.alt = data.name;
-    modalPreviewCaption.textContent = data.name;
-  });
-  return cardElement;
+function renderCard(data, wrap) {
+  const card = new Card(data, "#card-template", handleImageClick);
+  wrap.prepend(card.generateCardElement());
 }
 
 /*-------------------------------------------------------------------------------*/
@@ -133,15 +114,20 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
-  const cardElement = getCardElement({
+  renderCard({
     name,
     link,
-  });
-  cardList.prepend(cardElement);
+  }, cardList);
   evt.target.reset();
   closePopup(cardAddModal);
 }
 
+function handleImageClick(data) {
+  modalPreview.src = data.link;
+  modalPreview.alt = data.name;
+  modalPreviewCaption.textContent = data.name;
+  openPopup(previewImageModal);
+}
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
 /*-------------------------------------------------------------------------------*/
@@ -165,7 +151,25 @@ closeButtons.forEach((button) => {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 cardAddForm.addEventListener("submit", handleCardFormSubmit);
 
-initialCards.forEach((data) => {
-  const cardElement = getCardElement(data);
-  cardList.append(cardElement);
+/*-------------------------------------------------------------------------------*/
+/*                                  Validation                                   */
+/*-------------------------------------------------------------------------------*/
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit",
+  inactiveButtonClass: "modal__submit_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const profileFormValidator = new FormValidator(config, profileEditForm);
+const cardFormValidator = new FormValidator(config, cardAddForm);
+
+profileFormValidator.enableValidation(config);
+cardFormValidator.enableValidation(config);
+
+initialCards.forEach((initialCard) => {
+  renderCard(initialCard, cardList);
 });
