@@ -93,10 +93,13 @@ function closeOverlay(evt) {
     closePopup(evt.target);
   }
 }
-
+function createCard(item) {
+  const cardElement = new Card(item, "#card-template", handleImageClick);
+  return cardElement.generateCardElement();
+}
 function renderCard(data, wrap) {
-  const card = new Card(data, "#card-template", handleImageClick);
-  wrap.prepend(card.generateCardElement());
+  const card = createCard(data);
+  wrap.prepend(card);
 }
 
 /*-------------------------------------------------------------------------------*/
@@ -167,8 +170,8 @@ const config = {
 const profileFormValidator = new FormValidator(config, profileEditForm);
 const cardFormValidator = new FormValidator(config, cardAddForm);
 
-profileFormValidator.enableValidation(config);
-cardFormValidator.enableValidation(config);
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 initialCards.forEach((initialCard) => {
   renderCard(initialCard, cardList);

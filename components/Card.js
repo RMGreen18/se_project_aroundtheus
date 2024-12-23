@@ -12,20 +12,16 @@ export default class Card {
   }
 
   _setEventListeners() {
-    const cardImageElement = this._cardElement.querySelector("#card-image");
-    const buttonLike = this._cardElement.querySelector("#card-like-button");
-    const buttonDelete = this._cardElement.querySelector("#card-trash-button");
-
-    cardImageElement.addEventListener('click', () => {
+    this._cardImageElement.addEventListener('click', () => {
       this._handleImageClick({link: this._link, name: this._name});
   });
 
-  buttonLike.addEventListener('click', () => {
-    this._handleLike(buttonLike);
+  this._buttonLike.addEventListener('click', () => {
+    this._handleLike(this._buttonLike);
   });
 
-  buttonDelete.addEventListener('click', () => {
-    this._handleDelete(buttonDelete);
+  this._buttonDelete.addEventListener('click', () => {
+    this._handleDelete(this._buttonDelete);
   });
 
   }
@@ -34,13 +30,15 @@ export default class Card {
     button.classList.toggle("card__like-button_active");
   }
 
-  _handleDelete(button) {
-    const currentCard = button.closest("#card-element")
+  _handleDelete() {
+    this._cardElement.remove();
     currentCard.remove();
   }
 
   generateCardElement() {
     this._cardElement = this._getTemplate();
+    this._buttonLike = this._cardElement.querySelector("#card-like-button");
+    this._buttonDelete = this._cardElement.querySelector("#card-trash-button");
     this._cardTitleElement = this._cardElement.querySelector("#card-title");
     this._cardImageElement = this._cardElement.querySelector("#card-image");
     this._cardTitleElement.textContent = this._name;
