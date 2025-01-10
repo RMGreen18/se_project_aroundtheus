@@ -9,7 +9,7 @@
   
 ## Description
   
-This project was created using **HTML** and **CSS** in accordance with the [Figma design](https://www.figma.com/design/JFPhASqvZ5pBjQV2ouUlim/Sprint-5_-Around-The-U.S.-_-desktop-%2B-mobile-(Copy)?node-id=1-2&node-type=frame&t=BKnnPhQKe9XbrKrr-0) and brief provided by TripleTen. \
+This project was created using **HTML**, **CSS**, and **JavaScript** in accordance with the [Figma design](https://www.figma.com/design/JFPhASqvZ5pBjQV2ouUlim/Sprint-5_-Around-The-U.S.-_-desktop-%2B-mobile-(Copy)?node-id=1-2&node-type=frame&t=BKnnPhQKe9XbrKrr-0) and brief provided by TripleTen. \
 \
 The webpage allows users to:
 
@@ -72,10 +72,16 @@ This project featueres an adaptable webpage optimized for screen widths ranging 
     Resulting in the follwing visual output:\
     ![Card image caption text overflow hidden with ellipsis](./images/readme-images/features__hidden-text.png)
 
-  ### Hover States 
-  The edit profile, add image, and like image buttons all feature hover states using the ```:hover``` selector \
-  \
-  <img src="./images/readme-images/responsive-layout__hover.gif" width="500" height="500"/>
+### Hover States 
+The edit profile, add image, and like image buttons all feature hover states using the ```:hover``` selector \
+\
+<img src="./images/readme-images/responsive-layout__hover.gif" width="500" height="500"/>
+
+### Popup Windows
+Through the use of popups, users are able to edit their personal profiles, add additional images with captions, and view an enlarged version of images displayed on their and other users' profiles.
+
+### Form Validation
+To ensure a smooth user experience, form validation ensures that users are correctly filling out all required fields when editing their profile or adding a new image with a caption.
 
 ## GitHub Pages Link
 ### To view the finished webpage:
