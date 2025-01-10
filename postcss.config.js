@@ -13,5 +13,3 @@ module.exports = {
     cssnano({ preset: "default" }) // set default minification settings
   ]
 };
-
-package.json

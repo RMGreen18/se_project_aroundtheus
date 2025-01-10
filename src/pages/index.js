@@ -1,5 +1,9 @@
+import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import "./index.css";
 
 const initialCards = [
   {
@@ -32,7 +36,7 @@ const initialCards = [
 /*                                 Elements                                      */
 /*-------------------------------------------------------------------------------*/
 
-//Modal
+//Popups
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const cardAddModal = document.querySelector("#card-add-modal");
 const previewImageModal = document.querySelector("#preview-image-modal");
