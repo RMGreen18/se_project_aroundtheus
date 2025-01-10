@@ -1,73 +1,31 @@
+import {
+  initialCards,
+  profileEditModal,
+  cardAddModal,
+  previewImageModal,
+  closeButtons,
+  profileEditButton,
+  profileTitle,
+  profileDescription,
+  cardAddButton,
+  profileEditForm,
+  modalTitleInput,
+  modalDescriptionInput,
+  cardList,
+  cardAddForm,
+  cardTitleInput,
+  cardLinkInput,
+  modalPreview,
+  modalPreviewCaption,
+} from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 import "./index.css";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-/*-------------------------------------------------------------------------------*/
-/*                                 Elements                                      */
-/*-------------------------------------------------------------------------------*/
-
-//Popups
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const cardAddModal = document.querySelector("#card-add-modal");
-const previewImageModal = document.querySelector("#preview-image-modal");
-const closeButtons = document.querySelectorAll(".modal__close");
-
-// Profile
-const profileEditButton = document.querySelector("#profile-edit-button");
-const profileTitle = document.querySelector("#profile-title");
-const profileDescription = document.querySelector("#profile-description");
-const cardAddButton = document.querySelector("#card-add-button");
-
-//Profile Edit Form
-const profileEditForm = document.forms["profile-edit-form"];
-const modalTitleInput = document.querySelector("#profile-title-input");
-const modalDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
-
-//Cards
-const cardList = document.querySelector("#card-list");
-
-//Card Add Form
-const cardAddForm = document.forms["card-add-form"];
-const cardTitleInput = cardAddForm.querySelector("#card-title-input");
-const cardLinkInput = cardAddForm.querySelector("#card-image-input");
-
-//Image Preview
-const modalPreview = previewImageModal.querySelector("#modal-preview");
-const modalPreviewCaption = previewImageModal.querySelector(
-  "#modal-preview-caption"
-);
 
 /*-------------------------------------------------------------------------------*/
 /*                                 Functions                                     */
