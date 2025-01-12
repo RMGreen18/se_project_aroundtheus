@@ -1,6 +1,8 @@
 export default class Popup {
   constructor({ popupSelector }) {
-    this._popupElement = popupSelector;
+    console.log("popupSelector received in Popup constructor:", popupSelector);
+    this._popupElement = document.querySelector(popupSelector);
+    console.log("this._popupElement after assignment:", this._popupElement);
     this._closeButton = this._popupElement.querySelector(".modal__close");
   }
 
@@ -26,6 +28,7 @@ export default class Popup {
     this._closeButton.addEventListener("click", () => {
       this.close();
     });
+
     //adds a click event listener to the close icon of the popup
     //also closes when users click on the shaded area around the form
 

@@ -1,8 +1,5 @@
 import {
   initialCards,
-  profileEditModal,
-  cardAddModal,
-  previewImageModal,
   profileEditButton,
   profileTitle,
   profileDescription,
@@ -14,8 +11,7 @@ import {
   cardAddForm,
   cardTitleInput,
   cardLinkInput,
-  modalPreview,
-  modalPreviewCaption,
+  config,
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
@@ -32,11 +28,13 @@ import "./index.css";
 const cardsSection = new Section({items: initialCards, renderer: renderCard}, cardList);
 cardsSection.renderItems();
 
-const profileEditPopup = new PopupWithForm({popupSelector: profileEditModal, handeleFormSubmit:handleProfileFormSubmit});
+const profileEditPopup = new PopupWithForm({popupSelector: "#profile-edit-modal", handeleFormSubmit: handleProfileFormSubmit});
 profileEditPopup.setEventListeners();
 
-const cardAddPopup = new PopupWithForm({popupSelector: cardAddModal, handleFormSubmit: handleCardFormSubmit});
+const cardAddPopup = new PopupWithForm({popupSelector: "#card-add-modal", handleFormSubmit: handleCardFormSubmit});
 cardAddPopup.setEventListeners();
+
+const previewImagePopup = new PopupWithImage({popupSelector:"#preview-image-modal"});
 /*-------------------------------------------------------------------------------*/
 /*                                 Functions                                     */
 /*-------------------------------------------------------------------------------*/
@@ -90,10 +88,7 @@ function handleCardFormSubmit(evt) {
 }
 
 function handleImageClick(data) {
-  modalPreview.src = data.link;
-  modalPreview.alt = data.name;
-  modalPreviewCaption.textContent = data.name;
-  openPopup(previewImageModal);
+  previewImagePopup.open(data);
 }
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
@@ -108,30 +103,12 @@ cardAddButton.addEventListener("click", function () {
   cardAddPopup.open();
 });
 
-//REMOVE
-/*
-closeButtons.forEach((button) => {
-  const popup = button.closest(".modal");
-  button.addEventListener("click", function () {
-    closePopup(popup);
-  });
-});
-*/
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 cardAddForm.addEventListener("submit", handleCardFormSubmit);
 
 /*-------------------------------------------------------------------------------*/
 /*                                  Validation                                   */
 /*-------------------------------------------------------------------------------*/
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit",
-  inactiveButtonClass: "modal__submit_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const profileFormValidator = new FormValidator(config, profileEditForm);
 const cardFormValidator = new FormValidator(config, cardAddForm);

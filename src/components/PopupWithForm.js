@@ -4,14 +4,17 @@ export default class PopupWithForm extends Popup {
   //accepts two arguments:
     // the popup selector
     // and a callback function that fires on form submit
-  constructor({popupSelector}, handleFormSubmit) {
+  constructor({popupSelector, handleFormSubmit}) {
     super({ popupSelector });
-    this._popupForm = this._popupElement.querySelector('.modal__form');
+    console.log("popupSelector received in PopupWithForm constructor:", popupSelector);
+    this._popupForm = this._popupElement.querySelector(".modal__form");
+    
     this._handleFormSubmit = handleFormSubmit;
   }
 
   close() {
     //this._popupForm.reset();
+    console.log()
     super.close();
   }
 
