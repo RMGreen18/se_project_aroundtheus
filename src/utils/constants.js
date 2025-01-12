@@ -26,15 +26,8 @@ export const initialCards = [
   },
 ];
 
-//Popups
-//REMOVE
-//export const previewImageModal = document.querySelector("#preview-image-modal");
-//export const closeButtons = document.querySelectorAll(".modal__close");
-
 // Profile
 export const profileEditButton = document.querySelector("#profile-edit-button");
-export const profileTitle = document.querySelector("#profile-title");
-export const profileDescription = document.querySelector("#profile-description");
 export const cardAddButton = document.querySelector("#card-add-button");
 
 //Profile Edit Form
@@ -49,15 +42,6 @@ export const cardList = document.querySelector("#card-list");
 
 //Card Add Form
 export const cardAddForm = document.forms["card-add-form"];
-export const cardTitleInput = cardAddForm.querySelector("#card-title-input");
-export const cardLinkInput = cardAddForm.querySelector("#card-image-input");
-
-//Image Preview
-//REMOVE
-//export const modalImage = previewImageModal.querySelector("#modal-image");
-/* export const modalImageCaption = previewImageModal.querySelector(
-  "#modal-image-caption"
-); */
 
 //config
 export const config = {
