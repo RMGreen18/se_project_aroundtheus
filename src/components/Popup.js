@@ -1,8 +1,8 @@
 export default class Popup {
   constructor({ popupSelector }) {
-    console.log("popupSelector received in Popup constructor:", popupSelector);
+    //console.log("popupSelector received in Popup constructor:", popupSelector);
     this._popupElement = document.querySelector(popupSelector);
-    console.log("this._popupElement after assignment:", this._popupElement);
+    //console.log("this._popupElement after assignment:", this._popupElement);
     this._closeButton = this._popupElement.querySelector(".modal__close");
   }
 
