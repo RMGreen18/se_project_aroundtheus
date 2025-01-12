@@ -3,7 +3,6 @@ import {
   profileEditModal,
   cardAddModal,
   previewImageModal,
-  closeButtons,
   profileEditButton,
   profileTitle,
   profileDescription,
@@ -21,40 +20,43 @@ import {
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import "./index.css";
 
 /*-------------------------------------------------------------------------------*/
-/*                                 Functions                                     */
+/*                                 Elements                                      */
 /*-------------------------------------------------------------------------------*/
 
-function closePopup(popup) {
-  popup.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closePopupEsc);
-  popup.removeEventListener("mousedown", closeOverlay);
-}
+const cardsSection = new Section({items: initialCards, renderer: renderCard}, cardList);
+cardsSection.renderItems();
 
-function openPopup(popup) {
-  popup.classList.add("modal_opened");
-  document.addEventListener("keydown", closePopupEsc);
-  popup.addEventListener("mousedown", closeOverlay);
-}
+const profileEditPopup = new PopupWithForm({popupSelector: profileEditModal, handeleFormSubmit:handleProfileFormSubmit});
+profileEditPopup.setEventListeners();
 
+const cardAddPopup = new PopupWithForm({popupSelector: cardAddModal, handleFormSubmit: handleCardFormSubmit});
+cardAddPopup.setEventListeners();
+/*-------------------------------------------------------------------------------*/
+/*                                 Functions                                     */
+/*-------------------------------------------------------------------------------*/
+//REMOVE
+/*
 function closePopupEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".modal_opened");
     closePopup(openedPopup);
   }
 }
-
+*/
+//REMOVE
+/*
 function closeOverlay(evt) {
   if (evt.target.classList.contains("modal")) {
     closePopup(evt.target);
   }
 }
+  */
 function createCard(item) {
   const cardElement = new Card(item, "#card-template", handleImageClick);
   return cardElement.generateCardElement();
@@ -68,7 +70,7 @@ function renderCard(data, wrap) {
 /*                                Event Handlers                                 */
 /*-------------------------------------------------------------------------------*/
 
-function handleProfileEditSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = modalTitleInput.value;
   profileDescription.textContent = modalDescriptionInput.value;
@@ -99,21 +101,23 @@ function handleImageClick(data) {
 profileEditButton.addEventListener("click", function () {
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
-  openPopup(profileEditModal);
+  profileEditPopup.open();
 });
 
 cardAddButton.addEventListener("click", function () {
-  openPopup(cardAddModal);
+  cardAddPopup.open();
 });
 
+//REMOVE
+/*
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", function () {
     closePopup(popup);
   });
 });
-
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+*/
+profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 cardAddForm.addEventListener("submit", handleCardFormSubmit);
 
 /*-------------------------------------------------------------------------------*/
@@ -135,6 +139,4 @@ const cardFormValidator = new FormValidator(config, cardAddForm);
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
-initialCards.forEach((initialCard) => {
-  renderCard(initialCard, cardList);
-});
+
