@@ -56,9 +56,9 @@ function createCard(item) {
   return cardElement.generateCardElement();
 }
 
-function renderCard(data, wrap) {
+function renderCard(data) {
   const card = createCard(data);
-  wrap.prepend(card);
+  cardsSection.addItem(card);
 }
 
 /*-------------------------------------------------------------------------------*/
@@ -67,11 +67,13 @@ function renderCard(data, wrap) {
 
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
+  profileFormValidator.resetValidation();
   profileEditPopup.close();
 }
 
 function handleCardFormSubmit(data) {
   renderCard(data, cardList);
+  cardFormValidator.resetValidation();
   cardAddPopup.close();
 }
 
@@ -82,8 +84,9 @@ function handleImageClick({ link, name }) {
 /*                                Event Listeners                                */
 /*-------------------------------------------------------------------------------*/
 profileEditButton.addEventListener("click", function () {
-  modalTitleInput.value = userInfo._nameElement.textContent;
-  modalDescriptionInput.value = userInfo._jobElement.textContent;
+  const userData = userInfo.getUserInfo();
+  modalTitleInput.value = userData.title;
+  modalDescriptionInput.value = userData.description;
   profileEditPopup.open();
 });
 

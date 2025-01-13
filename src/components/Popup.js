@@ -26,7 +26,7 @@ export default class Popup {
     });
 
     this._popupElement.addEventListener("mousedown", (evt) => {
-      if (!evt.target.closest(".modal__container") && !evt.target.closest(".modal__container-image")) {
+      if (evt.target === this._popupElement) {
         this.close();
       }
     });
