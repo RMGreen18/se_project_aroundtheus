@@ -20,18 +20,32 @@ import "./index.css";
 /*-------------------------------------------------------------------------------*/
 /*                                 Elements                                      */
 /*-------------------------------------------------------------------------------*/
-const userInfo = new UserInfo({nameSelector: "#profile-title", jobSelector: "#profile-description"});
+const userInfo = new UserInfo({
+  nameSelector: "#profile-title",
+  jobSelector: "#profile-description",
+});
 
-const cardsSection = new Section({items: initialCards, renderer: renderCard}, cardList);
+const cardsSection = new Section(
+  { items: initialCards, renderer: renderCard },
+  cardList
+);
 cardsSection.renderItems();
 
-const profileEditPopup = new PopupWithForm({popupSelector: "#profile-edit-modal",  handleFormSubmit: handleProfileFormSubmit});
+const profileEditPopup = new PopupWithForm({
+  popupSelector: "#profile-edit-modal",
+  handleFormSubmit: handleProfileFormSubmit,
+});
 profileEditPopup.setEventListeners();
 
-const cardAddPopup = new PopupWithForm({popupSelector: "#card-add-modal", handleFormSubmit: handleCardFormSubmit});
+const cardAddPopup = new PopupWithForm({
+  popupSelector: "#card-add-modal",
+  handleFormSubmit: handleCardFormSubmit,
+});
 cardAddPopup.setEventListeners();
 
-const previewImagePopup = new PopupWithImage({popupSelector:"#preview-image-modal"});
+const previewImagePopup = new PopupWithImage({
+  popupSelector: "#preview-image-modal",
+});
 previewImagePopup.setEventListeners();
 /*-------------------------------------------------------------------------------*/
 /*                                 Functions                                     */
@@ -61,8 +75,8 @@ function handleCardFormSubmit(data) {
   cardAddPopup.close();
 }
 
-function handleImageClick({link, name}) {
-  previewImagePopup.open({link, name});
+function handleImageClick({ link, name }) {
+  previewImagePopup.open({ link, name });
 }
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
@@ -86,5 +100,3 @@ const cardFormValidator = new FormValidator(config, cardAddForm);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
-
-
