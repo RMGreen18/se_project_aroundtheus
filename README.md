@@ -18,7 +18,7 @@ The webpage allows users to:
 3. Like other users' photos
 \
 \
-![Webpage user actions](./images/readme-images/description__webpage-actions.png)
+![Webpage user actions](./src/images/readme-images/description__webpage-actions.png)
 \
 \
 This project featueres an adaptable webpage optimized for screen widths ranging from **desktop**(1280px) to **mobile**(320px). 
@@ -26,7 +26,7 @@ This project featueres an adaptable webpage optimized for screen widths ranging 
 ## Project Features   
 ### Responsive Layout
 #### To accomodate a variety of screen widths, the webpage has a responsive layout
-<img alt="Layout adjusting from desktop view to mobile view" src="./images/readme-images/responsive-layout.gif" width="500" height="500"/>
+<img alt="Layout adjusting from desktop view to mobile view" src="./src/images/readme-images/responsive-layout.gif" width="500" height="500"/>
 
   * **Grid and flexbox** \
     Both ```flex``` and ```grid``` values were used to create a dynamic layout. The profile portion of the webpage utilized both of these. \
@@ -34,12 +34,12 @@ This project featueres an adaptable webpage optimized for screen widths ranging 
       - There are three elements in the profile block: the profile image, profile information, and the add button.\
         To have them display as a row in the desktop view and later dispayed as a column in mobile view, ```flex``` was the appropriate property to use.\
         \
-        ![profile flex layout](./images/readme-images/features__responsive-flex.png) \
+        ![profile flex layout](./src/images/readme-images/features__responsive-flex.png) \
         *The three sections are displayed along only one axis*      
       - In contrast, the profile information section has three elements which are organized along two axes: the profile name, edit button, and profile description. \
         The ```grid-template-areas``` property was used to organize them in the appropriate layout. \
         \
-        ![profile information grid layout](./images/readme-images/features__responsive-grid.png)\
+        ![profile information grid layout](./src/images/readme-images/features__responsive-grid.png)\
         *The three sections are displayed along two axes* 
 
   * **Max-width** \
@@ -70,12 +70,12 @@ This project featueres an adaptable webpage optimized for screen widths ranging 
     }
     ```
     Resulting in the follwing visual output:\
-    ![Card image caption text overflow hidden with ellipsis](./images/readme-images/features__hidden-text.png)
+    ![Card image caption text overflow hidden with ellipsis](./src/images/readme-images/features__hidden-text.png)
 
 ### Hover States 
 The edit profile, add image, and like image buttons all feature hover states using the ```:hover``` selector \
 \
-<img src="./images/readme-images/responsive-layout__hover.gif" width="500" height="500"/>
+<img src="./src/images/readme-images/responsive-layout__hover.gif" width="500" height="500"/>
 
 ### Popup Windows
 Through the use of popups, users are able to edit their personal profiles, add additional images with captions, and view an enlarged version of images displayed on their and other users' profiles.
