@@ -9,6 +9,7 @@ import {
   cardAddForm,
   config,
 } from "../utils/constants.js";
+import Api from "../components/Api.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -20,6 +21,16 @@ import "./index.css";
 /*-------------------------------------------------------------------------------*/
 /*                                 Elements                                      */
 /*-------------------------------------------------------------------------------*/
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "bef088e1-2ae1-4a7b-9925-57c1eac9ed1e",
+    "Content-Type": "application/json",
+  },
+});
+
+
 const userInfo = new UserInfo({
   nameSelector: "#profile-title",
   jobSelector: "#profile-description",
@@ -67,6 +78,7 @@ function renderCard(data) {
 
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
+  api.updateUserInfo(userInfo.getUserInfo())
   profileFormValidator.resetValidation();
   profileEditPopup.close();
 }
@@ -94,6 +106,20 @@ cardAddButton.addEventListener("click", function () {
   cardAddPopup.open();
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  api.getUserInfo()
+  .then((res) => {
+    return res;
+  })
+  .then((res) => {
+     console.log(res);
+     userInfo.setUserInfo({title: res.name, description: res.about});
+  })
+  .catch((err) => {
+    console.log(`Error rendering user info: ${err}`);
+  });
+})
+
 /*-------------------------------------------------------------------------------*/
 /*                                  Validation                                   */
 /*-------------------------------------------------------------------------------*/
@@ -103,3 +129,7 @@ const cardFormValidator = new FormValidator(config, cardAddForm);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+
+
+//test
+api.getUserInfo();
