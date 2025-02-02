@@ -17,9 +17,6 @@ export default class Api {
         }
         return Promise.reject(`Error: ${res.status}`);
       })
-      .then((data) => {
-        console.log(data);
-      });
   }
 
   getUserInfo() {

@@ -1,5 +1,4 @@
 import {
-  initialCards,
   profileEditButton,
   cardAddButton,
   profileEditForm,
@@ -8,6 +7,7 @@ import {
   cardList,
   cardAddForm,
   config,
+  initialCards
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import Section from "../components/Section.js";
@@ -30,17 +30,23 @@ const api = new Api({
   },
 });
 
-
 const userInfo = new UserInfo({
   nameSelector: "#profile-title",
   jobSelector: "#profile-description",
 });
 
-const cardsSection = new Section(
-  { items: initialCards, renderer: renderCard },
-  cardList
-);
-cardsSection.renderItems();
+const cardsSection =
+  new Section(
+    { items: initialCards, renderer: renderCard },
+    cardList
+  );
+
+  api.getInitialCards().then(data => {
+    cardsSection.renderItems(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
 
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
@@ -133,3 +139,5 @@ cardFormValidator.enableValidation();
 
 //test
 api.getUserInfo();
+
+//api.getInitialCards();
