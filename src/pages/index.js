@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
      userInfo.setUserInfo({title: res.name, description: res.about});
   })
   .catch((err) => {
-    console.log(`Error rendering user info: ${err}`);
+    console.error(err);
   });
 })
 
