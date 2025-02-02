@@ -7,7 +7,6 @@ import {
   cardList,
   cardAddForm,
   config,
-  initialCards
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import Section from "../components/Section.js";
@@ -97,9 +96,14 @@ function handleProfileFormSubmit(data) {
 }
 
 function handleCardFormSubmit(data) {
-  renderCard(data, cardList);
+  api.addCard(data)
+  .then((card) => {
+  renderCard(card, cardList);
   cardFormValidator.resetValidation();
-  cardAddPopup.close();
+  cardAddPopup.close();})
+  .catch((err) => {
+    console.error(err);
+  })
 }
 
 function handleImageClick({ link, name }) {

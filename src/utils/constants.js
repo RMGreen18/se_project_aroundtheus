@@ -1,5 +1,5 @@
 //Initial Cards
-export let initialCards;
+//export let initialCards;
 // export const initialCards = [
 //   {
 //     name: "Yosemite Valley",
