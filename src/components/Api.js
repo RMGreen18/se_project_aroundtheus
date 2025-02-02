@@ -42,4 +42,8 @@ return fetch(`${this._baseUrl}/users/me`, {
   })
 })
 }
+
+getUserAndCardInfo() {
+  return Promise.all([this.getUserInfo(), this.getInitialCards()])
+}
   }

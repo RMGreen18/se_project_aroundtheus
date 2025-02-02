@@ -35,9 +35,14 @@ const userInfo = new UserInfo({
   jobSelector: "#profile-description",
 });
 
-const cardsSection =
+let cardsSection;
+
+api.getUserAndCardInfo().then(([serverUserInfo, serverCards]) => {
+  console.log(serverUserInfo);
+  userInfo.setUserInfo({title: serverUserInfo.name, description: serverUserInfo.about})
+  cardsSection =
   new Section(
-    { items: initialCards, renderer: renderCard },
+    { items: serverCards, renderer: renderCard },
     cardList
   );
 
@@ -47,6 +52,8 @@ const cardsSection =
   .catch((err) => {
     console.error(err);
   })
+})
+
 
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
@@ -112,19 +119,19 @@ cardAddButton.addEventListener("click", function () {
   cardAddPopup.open();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  api.getUserInfo()
-  .then((res) => {
-    return res;
-  })
-  .then((res) => {
-     console.log(res);
-     userInfo.setUserInfo({title: res.name, description: res.about});
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-})
+// document.addEventListener("DOMContentLoaded", function () {
+//   api.getUserInfo()
+//   .then((res) => {
+//     return res;
+//   })
+//   .then((res) => {
+//      console.log(res);
+//      userInfo.setUserInfo({title: res.name, description: res.about});
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+// })
 
 /*-------------------------------------------------------------------------------*/
 /*                                  Validation                                   */
