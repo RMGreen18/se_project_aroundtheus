@@ -18,8 +18,13 @@
 
     <main class="content">
       <section class="profile">
+        <div class="profile__image-container">
         <img alt="Jacques Cousteau profile image" class="profile__image"
           src="<%=require('./images/avatar_jacques-cousteau.jpg')%>" />
+          <button class="profile__image-edit-button" type="button">
+            <img src="<%=require('./images/edit-image-icon.svg')%>" alt="edit image icon" class="profile__image-edt-icon">
+          </button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__title" id="profile-title"></h1>
           <button aria-label="edit" type="button" class="profile__edit-button" id="profile-edit-button"></button>
