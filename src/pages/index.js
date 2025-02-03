@@ -82,7 +82,7 @@ deleteConfirmPopup.setEventListeners();
 /*-------------------------------------------------------------------------------*/
 
 function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick, handleCardDelete);
+  const cardElement = new Card(item, "#card-template", handleImageClick, handleCardLike, handleCardDelete);
   return cardElement.generateCardElement();
 }
 
@@ -128,9 +128,30 @@ deleteConfirmPopup.setConfirmFunction( () => {
   });
   card.remove();
   deleteConfirmPopup.close()
-})
-
+});
 }
+
+function handleCardLike(card, likeStatus, cardId) {
+if(!likeStatus){
+  api.addCardLike(cardId).then((res) => {
+    console.log(res.isLiked);
+    card.setLiked(res.isLiked);
+  }
+)
+.catch((err) => {
+  console.error(err);
+})}
+else {
+  api.removeCardLike(cardId).then((res) => {
+    console.log(res.isLiked);
+    card.setLiked(res.isLiked);
+  }
+)
+.catch((err) => {
+  console.error(err);
+})}
+}
+
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
 /*-------------------------------------------------------------------------------*/
