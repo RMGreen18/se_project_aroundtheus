@@ -14,6 +14,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import "./index.css";
 
@@ -38,13 +39,13 @@ let cardsSection;
 
 api.getUserAndCardInfo().then(([serverUserInfo, serverCards]) => {
   console.log(serverUserInfo);
+  console.log(serverCards);
   userInfo.setUserInfo({title: serverUserInfo.name, description: serverUserInfo.about})
   cardsSection =
   new Section(
     { items: serverCards, renderer: renderCard },
     cardList
   );
-
   api.getInitialCards().then(data => {
     cardsSection.renderItems(data);
   })
@@ -70,12 +71,18 @@ const previewImagePopup = new PopupWithImage({
   popupSelector: "#preview-image-modal",
 });
 previewImagePopup.setEventListeners();
+
+const deleteConfirmPopup = new PopupWithConfirm({
+  popupSelector: "#delete-confirm-modal"
+});
+deleteConfirmPopup.setEventListeners();
+
 /*-------------------------------------------------------------------------------*/
 /*                                 Functions                                     */
 /*-------------------------------------------------------------------------------*/
 
 function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick);
+  const cardElement = new Card(item, "#card-template", handleImageClick, handleCardDelete);
   return cardElement.generateCardElement();
 }
 
@@ -109,6 +116,21 @@ function handleCardFormSubmit(data) {
 function handleImageClick({ link, name }) {
   previewImagePopup.open({ link, name });
 }
+
+function handleCardDelete(cardId, card) {
+  console.log(cardId);
+  console.log(card);
+  deleteConfirmPopup.open();
+deleteConfirmPopup.setConfirmFunction( () => {
+  api.removeCard(cardId)
+  .catch((err) => {
+    console.error(err);
+  });
+  card.remove();
+  deleteConfirmPopup.close()
+})
+
+}
 /*-------------------------------------------------------------------------------*/
 /*                                Event Listeners                                */
 /*-------------------------------------------------------------------------------*/
@@ -123,20 +145,6 @@ cardAddButton.addEventListener("click", function () {
   cardAddPopup.open();
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   api.getUserInfo()
-//   .then((res) => {
-//     return res;
-//   })
-//   .then((res) => {
-//      console.log(res);
-//      userInfo.setUserInfo({title: res.name, description: res.about});
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
-// })
-
 /*-------------------------------------------------------------------------------*/
 /*                                  Validation                                   */
 /*-------------------------------------------------------------------------------*/
@@ -146,9 +154,3 @@ const cardFormValidator = new FormValidator(config, cardAddForm);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
-
-
-//test
-api.getUserInfo();
-
-//api.getInitialCards();
