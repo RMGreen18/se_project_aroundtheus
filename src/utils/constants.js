@@ -1,11 +1,9 @@
 // Profile
 export const avatarEditButton = document.querySelector("#avatar-edit-button");
-export const avatarEditForm = document.forms["avatar-edit-form"];
 export const profileEditButton = document.querySelector("#profile-edit-button");
 export const cardAddButton = document.querySelector("#card-add-button");
 
 //Profile Edit Form
-export const profileEditForm = document.forms["profile-edit-form"];
 export const modalTitleInput = document.querySelector("#profile-title-input");
 export const modalDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -13,9 +11,6 @@ export const modalDescriptionInput = document.querySelector(
 
 //Cards
 export const cardList = document.querySelector("#card-list");
-
-//Card Add Form
-export const cardAddForm = document.forms["card-add-form"];
 
 //config
 export const config = {

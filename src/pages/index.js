@@ -1,13 +1,10 @@
 import {
   avatarEditButton,
-  avatarEditForm,
   profileEditButton,
   cardAddButton,
-  profileEditForm,
   modalTitleInput,
   modalDescriptionInput,
   cardList,
-  cardAddForm,
   config,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
@@ -108,32 +105,32 @@ function renderCard(data) {
 /*-------------------------------------------------------------------------------*/
 
 function handleProfileFormSubmit(data) {
-  profileEditPopup.setLoading(true);
+  profileEditPopup.renderLoading(true);
   userInfo.setUserInfo(data);
   api.updateUserInfo(userInfo.getUserInfo())
   .catch((err) => {
     console.error(err);
   })
-  .finally(() => profileEditPopup.setLoading(false));
+  .finally(() => profileEditPopup.renderLoading(false));
   profileFormValidator.resetValidation();
   profileEditPopup.close();
 }
 
 function handleAvatarFormSubmit(data) {
-avatarEditPopup.setLoading(true);
+avatarEditPopup.renderLoading(true);
 const avatar = data.link;
 userInfo.setAvatar({ avatar });
 api.updateAvatar(data.link)
 .catch((err) => {
   console.error(err);
 })
-.finally(() => avatarEditPopup.setLoading(false));
+.finally(() => avatarEditPopup.renderLoading(false));
 avatarFormValidator.resetValidation();
 avatarEditPopup.close();
 }
 
 function handleCardFormSubmit(data) {
-  cardAddPopup.setLoading(true);
+  cardAddPopup.renderLoading(true);
   api.addCard(data)
   .then((card) => {
   renderCard(card, cardList);
@@ -142,7 +139,7 @@ function handleCardFormSubmit(data) {
   .catch((err) => {
     console.error(err);
   })
-  .finally(() => cardAddPopup.setLoading(false));
+  .finally(() => cardAddPopup.renderLoading(false));
 }
 
 
@@ -208,9 +205,9 @@ cardAddButton.addEventListener("click", function () {
 /*                                  Validation                                   */
 /*-------------------------------------------------------------------------------*/
 
-const profileFormValidator = new FormValidator(config, profileEditForm);
-const avatarFormValidator = new FormValidator(config, avatarEditForm)
-const cardFormValidator = new FormValidator(config, cardAddForm);
+const profileFormValidator = new FormValidator(config, profileEditPopup.getform());
+const avatarFormValidator = new FormValidator(config, avatarEditPopup.getform());
+const cardFormValidator = new FormValidator(config, cardAddPopup.getform());
 
 
 profileFormValidator.enableValidation();

@@ -5,8 +5,8 @@ export default class Api {
   }
 
   _checkRes(res) {
-    if (res.om) {
-      return res.json;
+    if (res.ok) {
+      return res.json();
     }
     return Promise.reject(`Error: ${res.status}`);
   }
@@ -22,7 +22,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    }).then(this._checkRes);
+    }).then((this._checkRes));
   }
 
   getUserAndCardInfo() {
