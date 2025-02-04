@@ -23,15 +23,14 @@ export default class PopupWithForm extends Popup {
     return this._inputValues;
   };
 
-  getform() {
-    return this._popupform
+  getForm() {
+    return this._popupForm;
   }
 
-  renderLoading(isLoading, loadingText='Saving...') {
-    if(isLoading) {
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
       this._submitButton.textContent = loadingText;
-    }
-    else {
+    } else {
       this._submitButton.textContent = this._submitButtonText;
     }
   }
