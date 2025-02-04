@@ -28,6 +28,8 @@
 // ];
 
 // Profile
+export const avatarEditButton = document.querySelector("#avatar-edit-button");
+export const avatarEditForm = document.forms["avatar-edit-form"];
 export const profileEditButton = document.querySelector("#profile-edit-button");
 export const cardAddButton = document.querySelector("#card-add-button");
 
@@ -50,6 +52,6 @@ export const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit",
   inactiveButtonClass: "modal__submit_disabled",
-  inputErrorClass: "modal__input_type_error",
+  inputErrorClass: "modal__input-type_error",
   errorClass: "modal__error_visible",
 };

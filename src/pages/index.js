@@ -1,4 +1,6 @@
 import {
+  avatarEditButton,
+  avatarEditForm,
   profileEditButton,
   cardAddButton,
   profileEditForm,
@@ -33,6 +35,7 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: "#profile-title",
   jobSelector: "#profile-description",
+  imageSelector: "#profile-image"
 });
 
 let cardsSection;
@@ -40,7 +43,7 @@ let cardsSection;
 api.getUserAndCardInfo().then(([serverUserInfo, serverCards]) => {
   console.log(serverUserInfo);
   console.log(serverCards);
-  userInfo.setUserInfo({title: serverUserInfo.name, description: serverUserInfo.about})
+  userInfo.setUserInfo({title: serverUserInfo.name, description: serverUserInfo.about, avatar: serverUserInfo.avatar})
   cardsSection =
   new Section(
     { items: serverCards, renderer: renderCard },
@@ -60,6 +63,12 @@ const profileEditPopup = new PopupWithForm({
   handleFormSubmit: handleProfileFormSubmit,
 });
 profileEditPopup.setEventListeners();
+
+const avatarEditPopup = new PopupWithForm({
+  popupSelector: "#avatar-edit-modal",
+  handleFormSubmit: handleAvatarFormSubmit,
+})
+avatarEditPopup.setEventListeners();
 
 const cardAddPopup = new PopupWithForm({
   popupSelector: "#card-add-modal",
@@ -98,8 +107,22 @@ function renderCard(data) {
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
   api.updateUserInfo(userInfo.getUserInfo())
+  .catch((err) => {
+    console.error(err);
+  });
   profileFormValidator.resetValidation();
   profileEditPopup.close();
+}
+
+function handleAvatarFormSubmit(data) {
+  console.log(data.link);
+api.updateAvatar(data.link)
+.catch((err) => {
+  console.error(err);
+});
+userInfo.setAvatar(data.link);
+avatarFormValidator.resetValidation();
+avatarEditPopup.close();
 }
 
 function handleCardFormSubmit(data) {
@@ -110,8 +133,9 @@ function handleCardFormSubmit(data) {
   cardAddPopup.close();})
   .catch((err) => {
     console.error(err);
-  })
+  });
 }
+
 
 function handleImageClick({ link, name }) {
   previewImagePopup.open({ link, name });
@@ -140,7 +164,8 @@ if(!likeStatus){
 )
 .catch((err) => {
   console.error(err);
-})}
+});
+}
 else {
   api.removeCardLike(cardId).then((res) => {
     console.log(res.isLiked);
@@ -149,7 +174,8 @@ else {
 )
 .catch((err) => {
   console.error(err);
-})}
+});
+}
 }
 
 /*-------------------------------------------------------------------------------*/
@@ -162,16 +188,22 @@ profileEditButton.addEventListener("click", function () {
   profileEditPopup.open();
 });
 
+avatarEditButton.addEventListener("click", function () {
+  avatarEditPopup.open();
+})
+
 cardAddButton.addEventListener("click", function () {
   cardAddPopup.open();
 });
-
 /*-------------------------------------------------------------------------------*/
 /*                                  Validation                                   */
 /*-------------------------------------------------------------------------------*/
 
 const profileFormValidator = new FormValidator(config, profileEditForm);
+const avatarFormValidator = new FormValidator(config, avatarEditForm)
 const cardFormValidator = new FormValidator(config, cardAddForm);
 
+
 profileFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 cardFormValidator.enableValidation();

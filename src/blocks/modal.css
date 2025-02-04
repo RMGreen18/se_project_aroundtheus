@@ -119,12 +119,12 @@
   visibility: none;
 }
 
-.modal__error:first-of-type {
-  top: 32px;
-}
-
 .modal__error:last-of-type {
   top: 90px;
+}
+
+.modal__error:first-of-type {
+  top: 32px;
 }
 
 .modal__error_visible {

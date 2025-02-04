@@ -49,6 +49,26 @@ export default class Api {
     });
   }
 
+  updateAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      })
+    }).then((res) => {
+      console.log(res);
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`)
+    })
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
+  }
+
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
