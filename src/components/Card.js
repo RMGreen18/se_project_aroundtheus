@@ -40,17 +40,14 @@ export default class Card {
   _renderLikes() {
     if(this._likeStatus) {
       this._buttonLike.classList.add("card__like-button_active");
-      console.log("Like added");
     }
     else {
       this._buttonLike.classList.remove("card__like-button_active");
-      console.log("Like removed");
     }
   }
 
   setLiked(isLiked) {
     this._likeStatus = isLiked;
-    console.log(`${this._name}'s like status set to ${this._likeStatus}`);
     this._renderLikes();
   }
 

@@ -35,15 +35,15 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: "#profile-title",
   jobSelector: "#profile-description",
-  imageSelector: "#profile-image"
+  imageSelector: "#profile-image",
 });
 
 let cardsSection;
 
 api.getUserAndCardInfo().then(([serverUserInfo, serverCards]) => {
+  console.log(serverUserInfo.avatar);
   console.log(serverUserInfo);
-  console.log(serverCards);
-  userInfo.setUserInfo({title: serverUserInfo.name, description: serverUserInfo.about, avatar: serverUserInfo.avatar})
+  userInfo.setProfileInfo({ title: serverUserInfo.name, description: serverUserInfo.about, avatar: serverUserInfo.avatar });
   cardsSection =
   new Section(
     { items: serverCards, renderer: renderCard },
@@ -60,18 +60,21 @@ api.getUserAndCardInfo().then(([serverUserInfo, serverCards]) => {
 
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
+  submitButtonSelector:"#profile-submit-button",
   handleFormSubmit: handleProfileFormSubmit,
 });
 profileEditPopup.setEventListeners();
 
 const avatarEditPopup = new PopupWithForm({
   popupSelector: "#avatar-edit-modal",
+  submitButtonSelector:"#avatar-submit-button",
   handleFormSubmit: handleAvatarFormSubmit,
 })
 avatarEditPopup.setEventListeners();
 
 const cardAddPopup = new PopupWithForm({
   popupSelector: "#card-add-modal",
+  submitButtonSelector:"#card-submit-button",
   handleFormSubmit: handleCardFormSubmit,
 });
 cardAddPopup.setEventListeners();
@@ -105,27 +108,32 @@ function renderCard(data) {
 /*-------------------------------------------------------------------------------*/
 
 function handleProfileFormSubmit(data) {
+  profileEditPopup.setLoading(true);
   userInfo.setUserInfo(data);
   api.updateUserInfo(userInfo.getUserInfo())
   .catch((err) => {
     console.error(err);
-  });
+  })
+  .finally(() => profileEditPopup.setLoading(false));
   profileFormValidator.resetValidation();
   profileEditPopup.close();
 }
 
 function handleAvatarFormSubmit(data) {
-  console.log(data.link);
+avatarEditPopup.setLoading(true);
+const avatar = data.link;
+userInfo.setAvatar({ avatar });
 api.updateAvatar(data.link)
 .catch((err) => {
   console.error(err);
-});
-userInfo.setAvatar(data.link);
+})
+.finally(() => avatarEditPopup.setLoading(false));
 avatarFormValidator.resetValidation();
 avatarEditPopup.close();
 }
 
 function handleCardFormSubmit(data) {
+  cardAddPopup.setLoading(true);
   api.addCard(data)
   .then((card) => {
   renderCard(card, cardList);
@@ -133,7 +141,8 @@ function handleCardFormSubmit(data) {
   cardAddPopup.close();})
   .catch((err) => {
     console.error(err);
-  });
+  })
+  .finally(() => cardAddPopup.setLoading(false));
 }
 
 
