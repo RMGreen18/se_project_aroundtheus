@@ -10,7 +10,7 @@
   max-height: 120px;
   max-width: 120px;
   border-radius: 50%;
-
+  margin: 0;
 }
 
 .profile__image-container {
@@ -114,9 +114,10 @@
     padding: 42px 0 36px;
     max-width: 282px;
   }
-  .profile__image {
-    margin: 0 0 30px;
+  .profile__image-container {
+    margin-bottom: 30px;
   }
+
   .profile__info {
     display: flex;
     flex-wrap: wrap;
