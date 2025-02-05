@@ -113,9 +113,19 @@ function renderCard(data) {
 function handleProfileFormSubmit(data) {
   profileEditPopup.renderLoading(true);
   api
-    .updateUserInfo(userInfo.getUserInfo())
-    .then(userInfo.setUserInfo(data))
-    .then(profileEditPopup.close())
+    .updateUserInfo(data)
+    .then(() => {
+      userInfo.setUserInfo(data);
+    })
+    .then(() => {
+      profileFormValidator.disableSubmit();
+    })
+    .then(() => {
+      profileEditPopup.clearInputs();
+    })
+    .then(() => {
+      profileEditPopup.close();
+    })
     .catch((err) => {
       console.error(err);
     })
@@ -124,12 +134,20 @@ function handleProfileFormSubmit(data) {
 
 function handleAvatarFormSubmit(data) {
   avatarEditPopup.renderLoading(true);
-  const avatar = data.link;
   api
     .updateAvatar(data.link)
-    .then(userInfo.setAvatar({ avatar }))
-    .then(avatarFormValidator.disableSubmit())
-    .then(avatarEditPopup.close())
+    .then((res) => {
+      userInfo.setAvatar(res);
+    })
+    .then(() => {
+      avatarFormValidator.disableSubmit();
+    })
+    .then(() => {
+      avatarEditPopup.clearInputs();
+    })
+    .then(() => {
+      avatarEditPopup.close();
+    })
     .catch((err) => {
       console.error(err);
     })
@@ -143,8 +161,15 @@ function handleCardFormSubmit(data) {
     .then((card) => {
       renderCard(card, cardList);
     })
-    .then(cardFormValidator.disableSubmit())
-    .then(cardAddPopup.close())
+    .then(() => {
+      cardFormValidator.disableSubmit();
+    })
+    .then(() => {
+      cardAddPopup.clearInputs();
+    })
+    .then(() => {
+      cardAddPopup.close();
+    })
     .catch((err) => {
       console.error(err);
     })
@@ -160,8 +185,12 @@ function handleCardDelete(cardId, card) {
   deleteConfirmPopup.setConfirmFunction(() => {
     api
       .removeCard(cardId)
-      .then(card.remove())
-      .then(deleteConfirmPopup.close())
+      .then(() => {
+        card.remove();
+      })
+      .then(() => {
+        deleteConfirmPopup.close();
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -173,7 +202,6 @@ function handleCardLike(card, likeStatus, cardId) {
     api
       .addCardLike(cardId)
       .then((res) => {
-        console.log(res.isLiked);
         card.setLiked(res.isLiked);
       })
       .catch((err) => {
@@ -183,7 +211,6 @@ function handleCardLike(card, likeStatus, cardId) {
     api
       .removeCardLike(cardId)
       .then((res) => {
-        console.log(res.isLiked);
         card.setLiked(res.isLiked);
       })
       .catch((err) => {
